@@ -1,6 +1,8 @@
 #!/home/oriyia/.virtualenvs/crypto_portfolio/bin/python3
 import sys
 import math
+import json
+from datetime import date
 
 from portfolio_value import calculate_value_assets, calculate_total_value_portfolio, get_price_coin
 from deposits import DEPOSITS
@@ -61,6 +63,17 @@ def calculate_total_amount_deposits(deposits: dict) -> float:
     return total_amount
 
 
+def update_profitability_results_file(profitability: float):
+    today = date.today()
+    with open("profitability_results.json", "r") as file:
+        data = json.load(file)
+
+    data[str(today)] = profitability
+
+    with open("profitability_results.json", "w") as file:
+        json.dump(data, file)
+
+
 def main():
     portfolio = Portfolio()
     check_result = check_proportions_assets(portfolio.asset_proportions)
@@ -86,6 +99,8 @@ def main():
 
     profitability = (total_value_portfolio - total_deposits) / total_deposits * 100
     print(f"Доходность: {profitability}")
+
+    update_profitability_results_file(profitability)
 
 
 if __name__ == "__main__":
