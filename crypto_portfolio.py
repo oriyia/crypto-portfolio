@@ -11,16 +11,16 @@ from deposits import DEPOSITS
 class Portfolio():
     def __init__(self):
         self.asset_proportions = {
-                'BTC': 0.3,
-                'BNB': 0.10,
-                'ETH': 0.2,
+                'BTC': 0.25,
+                'BNB': 0.08,
+                'ETH': 0.18,
                 'DOT': 0.05,
                 'NEAR': 0.05,
                 'ADA': 0.05,
                 'ATOM': 0.05,
                 'MATIC': 0.1,
-                'IMX': 0.02,
-                'ROSE': 0.08
+                'GRT': 0.10,
+                'AGIX': 0.09
         }
         self.cash = 120
         self.number_averages = 1
